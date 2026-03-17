@@ -38,7 +38,12 @@ function addBookToLibrary(title, author, pages, finished) {
 function displayNewBook(book) {
   const listItem = document.createElement('li')
   listItem.innerText = book.info()
+
+  const removeItem = document.createElement('button')
+  removeItem.innerText = 'Remove'
+
   bookList.appendChild(listItem)
+  listItem.appendChild(removeItem)
 }
 
 // ADD BOOK
@@ -51,7 +56,7 @@ dialogCloseButton.addEventListener('click', () => {
 })
 
 dialogSubmitButton.addEventListener('click', () => {
-  if (!myLibrary.some(book => book.title === bookTitle.value)) {
+  if (!myLibrary.some(book => book.title === bookTitle.value)) {  // Don't allow to add the same book multiple times
     let newBook = addBookToLibrary(bookTitle.value, bookAuthor.value, bookPage.value, bookFinished.checked)
     displayNewBook(newBook)
   }

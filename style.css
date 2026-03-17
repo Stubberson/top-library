@@ -1,0 +1,16 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 12px;
+}
+
+li {
+    margin-bottom: 12px;
+}
+
+li button {
+    margin-left: 6px;
+}
