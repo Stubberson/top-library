@@ -44,6 +44,14 @@ function displayNewBook(book) {
 
   bookList.appendChild(listItem)
   listItem.appendChild(removeItem)
+
+  removeItem.addEventListener('click', () => {
+    listItem.remove()  // Remove from DOM
+    // Remove from memory
+    if (myLibrary.some(savedBook => savedBook.title === book.title)) {
+      myLibrary.splice(myLibrary.indexOf(book), 1)
+    }
+  })
 }
 
 // ADD BOOK
@@ -61,5 +69,5 @@ dialogSubmitButton.addEventListener('click', () => {
     displayNewBook(newBook)
   }
   
-  dialogForm.reset()
+  dialogForm.reset()  // The <dialog> element doesn't reset the form automatically when submitted
 })
