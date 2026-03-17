@@ -1,11 +1,19 @@
 let bookList = document.querySelector('ul')
-const newBookButton = document.querySelector('#new-book')
+
+const showDialogButton = document.querySelector('#new-book')
+
 const newBookDialog = document.querySelector('dialog')
 const dialogCloseButton = document.querySelector('dialog button')
+const dialogForm = document.querySelector('form')
+const dialogSubmitButton = document.querySelector('form button')
+const bookTitle = document.querySelector('#title')
+const bookAuthor = document.querySelector('#author')
+const bookPage = document.querySelector('#page')
+const bookFinished = document.querySelector('#finished')
 
 let myLibrary = []
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, finished) {
   if (!new.target) {
     throw Error("Use the 'new' operator to call the constructor!")
   }
@@ -13,35 +21,40 @@ function Book(title, author, pages, read) {
   this.title = title
   this.author = author
   this.pages = pages
-  this.read = read
+  this.finished = finished
   this.id = crypto.randomUUID()
 
   this.info = function() {
-    return `${title} by ${author}, at page ${pages}, ${read ? 'read' : 'not read'}`
+    return `${title} by ${author}, at page ${pages}, ${finished ? 'finished' : 'not finished'}`
   }
 }
 
-function addBookToLibrary(title, author, pages, read) {
-  book = new Book(title, author, pages, read)
+function addBookToLibrary(title, author, pages, finished) {
+  book = new Book(title, author, pages, finished)
   myLibrary.push(book)
+  return book
 }
 
-function displayBooks() {
-    for (const book of myLibrary) {
-        const listItem = document.createElement('li')
-        listItem.innerText = book.info()
-        bookList.appendChild(listItem)
-    }
+function displayNewBook(book) {
+  const listItem = document.createElement('li')
+  listItem.innerText = book.info()
+  bookList.appendChild(listItem)
 }
 
-newBookButton.addEventListener('click', () => {
-    newBookDialog.showModal()
+// ADD BOOK
+showDialogButton.addEventListener('click', () => {
+  newBookDialog.showModal()
 })
 
 dialogCloseButton.addEventListener('click', () => {
-    newBookDialog.close()
+  newBookDialog.close()
 })
 
-addBookToLibrary('The Hobbit', 'J.R.R Tolkien', '25', 0)
-addBookToLibrary("Tell Me How Long the Train's Been Gone", 'James Baldwin', '75', 0)
-displayBooks()
+dialogSubmitButton.addEventListener('click', () => {
+  if (!myLibrary.some(book => book.title === bookTitle.value)) {
+    let newBook = addBookToLibrary(bookTitle.value, bookAuthor.value, bookPage.value, bookFinished.checked)
+    displayNewBook(newBook)
+  }
+  
+  dialogForm.reset()
+})

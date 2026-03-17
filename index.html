@@ -17,8 +17,23 @@
         <button id="new-book">New Book</button>
 
         <dialog>
-            <button autofocus>Close</button>
-            <p>Dialog!</p>
+            <button>Close</button>
+            <form> 
+                <h2>Add a new book to library</h2>
+                <label for="title">Title</label>
+                <input id="title" type="text" autofocus>
+                
+                <label for="author">Author</label>
+                <input id="author" type="text">
+                
+                <label for="page">Page</label>
+                <input id="page" type="number">
+
+                <label for="finished">Finished</label>
+                <input id="finished" type="checkbox">
+
+                <button formmethod="dialog">Add book</button>
+            </form>
         </dialog>
     </div>
 </body>
