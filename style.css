@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    width: 480px;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -8,9 +14,14 @@ input {
 }
 
 li {
+    display: flex;
     margin-bottom: 12px;
 }
 
 li button {
-    margin-left: 6px;
+    margin-left: auto;
+}
+
+button {
+    cursor: pointer;
 }

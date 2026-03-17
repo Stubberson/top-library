@@ -39,18 +39,15 @@ function displayNewBook(book) {
   const listItem = document.createElement('li')
   listItem.innerText = book.info()
 
-  const removeItem = document.createElement('button')
-  removeItem.innerText = 'Remove'
+  const removeButton = document.createElement('button')
+  removeButton.innerText = 'Remove'
 
   bookList.appendChild(listItem)
-  listItem.appendChild(removeItem)
+  listItem.appendChild(removeButton)
 
-  removeItem.addEventListener('click', () => {
+  removeButton.addEventListener('click', () => {
     listItem.remove()  // Remove from DOM
-    // Remove from memory
-    if (myLibrary.some(savedBook => savedBook.title === book.title)) {
-      myLibrary.splice(myLibrary.indexOf(book), 1)
-    }
+    myLibrary.splice(myLibrary.indexOf(book), 1)  // Remove from memory
   })
 }
 
