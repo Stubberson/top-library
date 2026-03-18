@@ -25,7 +25,11 @@ function Book(title, author, pages, finished) {
   this.id = crypto.randomUUID()
 
   this.info = function() {
-    return `${title} by ${author}, at page ${pages}, ${finished ? 'finished' : 'not finished'}`
+    if (this.finished) {
+      return `${this.title} by ${this.author}, finished`
+    } else {
+      return `${this.title} by ${this.author}, at page ${this.pages}, unfinished`
+    }
   }
 }
 
@@ -39,11 +43,22 @@ function displayNewBook(book) {
   const listItem = document.createElement('li')
   listItem.innerText = book.info()
 
+  const finishedCheckbox = document.createElement('input')
+  finishedCheckbox.type = 'checkbox'
+  book.finished ? finishedCheckbox.checked = true : finishedCheckbox.checked = false
+
   const removeButton = document.createElement('button')
   removeButton.innerText = 'Remove'
 
   bookList.appendChild(listItem)
+  listItem.appendChild(finishedCheckbox)
   listItem.appendChild(removeButton)
+
+  finishedCheckbox.addEventListener('click', () => {
+    finishedCheckbox.checked ? book.finished = true : book.finished = false
+    let updatedText = document.createTextNode(book.info())
+    listItem.replaceChild(updatedText, listItem.firstChild)  // Replace only the text from the listItem
+  })
 
   removeButton.addEventListener('click', () => {
     listItem.remove()  // Remove from DOM
