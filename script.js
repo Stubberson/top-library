@@ -39,12 +39,14 @@ function addBookToLibrary(title, author, pages, finished) {
   return book
 }
 
+// DISPLAY LIBRARY ITEM W/ BUTTONS
 function displayNewBook(book) {
   const listItem = document.createElement('li')
   listItem.innerText = book.info()
 
   const finishedCheckbox = document.createElement('input')
   finishedCheckbox.type = 'checkbox'
+  finishedCheckbox.className = 'checkbox'
   book.finished ? finishedCheckbox.checked = true : finishedCheckbox.checked = false
 
   const removeButton = document.createElement('button')
@@ -57,7 +59,7 @@ function displayNewBook(book) {
   finishedCheckbox.addEventListener('click', () => {
     finishedCheckbox.checked ? book.finished = true : book.finished = false
     let updatedText = document.createTextNode(book.info())
-    listItem.replaceChild(updatedText, listItem.firstChild)  // Replace only the text from the listItem
+    listItem.replaceChild(updatedText, listItem.firstChild)  // Update only the text from the listItem
   })
 
   removeButton.addEventListener('click', () => {
@@ -66,7 +68,7 @@ function displayNewBook(book) {
   })
 }
 
-// ADD BOOK
+// ADD BOOK DIALOG
 showDialogButton.addEventListener('click', () => {
   newBookDialog.showModal()
 })

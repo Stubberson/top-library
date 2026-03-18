@@ -11,7 +11,7 @@ form {
     flex-direction: column;
 }
 
-input {
+form input {
     margin-bottom: 12px;
 }
 
@@ -22,13 +22,14 @@ ul, li {
 
 li {
     display: flex;
+    align-items: center;
     margin-bottom: 12px;
 }
 
-li button {
-    margin-left: auto;
+li .checkbox {
+    margin: 0 12px 0 auto;
 }
 
-button {
+button, .checkbox {
     cursor: pointer;
 }
