@@ -6,6 +6,10 @@ body {
     justify-self: center;
 }
 
+body > div > div {
+    display: flex;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -32,4 +36,36 @@ li .checkbox {
 
 button, .checkbox {
     cursor: pointer;
+}
+
+button#new-book {
+    align-self: center;
+    margin-left: 1em;
+
+    width: 2em;
+    height: 2em;
+    
+    border: none;
+    border-radius: 50%;
+    
+    background-color: ghostwhite;
+    background-image: url(add.png);
+    background-position: 50% 50%;
+}
+
+button#new-book:hover,
+button.remove:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+button.remove {
+    width: 2em;
+    height: 2em;
+
+    border-radius: 50%;
+    border: none;
+
+    background-color: ghostwhite;
+    background-image: url(remove.png);
+    background-position: 50% 50%;
 }
