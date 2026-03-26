@@ -28,15 +28,16 @@ class Book {
 
   displayBook() {
     const listItem = document.createElement('li')
+    const finishedCheckbox = document.createElement('input')
+    const removeButton = document.createElement('button')
+    
     listItem.innerText = this.info()
 
-    const finishedCheckbox = document.createElement('input')
-    finishedCheckbox.type = 'checkbox'
+    finishedCheckbox.type = 'checkbox'  // Finished checkbox for the created book
     finishedCheckbox.className = 'checkbox'
     this.finished ? finishedCheckbox.checked = true : finishedCheckbox.checked = false
 
-    const removeButton = document.createElement('button')
-    removeButton.innerText = 'Remove'
+    removeButton.className = 'remove'
 
     bookList.appendChild(listItem)
     listItem.appendChild(finishedCheckbox)
@@ -65,10 +66,12 @@ dialogCloseButton.addEventListener('click', () => {
 })
 
 dialogSubmitButton.addEventListener('click', () => {
-  if (!Book.library.some(book => book.title === bookTitle.value)) {
+  if (!Book.library.some(book => book.title === bookTitle.value && book.author === bookAuthor.value)) {
     let newBook = new Book(bookTitle.value, bookAuthor.value, bookPage.value, bookFinished.checked)
     newBook.displayBook()
+  } else {
+    alert('Book already in library!')
   }
-  
+
   dialogForm.reset()  // The <dialog> element doesn't reset the form automatically when submitted
 })
