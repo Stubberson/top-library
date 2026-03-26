@@ -28,13 +28,13 @@ function Book(title, author, pages, finished) {
     if (this.finished) {
       return `${this.title} by ${this.author}, finished`
     } else {
-      return `${this.title} by ${this.author}, at page ${this.pages}, unfinished`
+      return `${this.title} by ${this.author}, pages ${this.pages}, unfinished`
     }
   }
 }
 
 function addBookToLibrary(title, author, pages, finished) {
-  book = new Book(title, author, pages, finished)
+  const book = new Book(title, author, pages, finished)
   myLibrary.push(book)
   return book
 }
