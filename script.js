@@ -22,7 +22,7 @@ class Book {
     Book.library.push(this)
   }
 
-  info() {
+  get info() {
     return `${this.title} by ${this.author}, pages ${this.pages}, ${this.finished ? 'finished' : 'unfinished'}`
   }
 
@@ -31,7 +31,7 @@ class Book {
     const finishedCheckbox = document.createElement('input')
     const removeButton = document.createElement('button')
     
-    listItem.innerText = this.info()
+    listItem.innerText = this.info
 
     finishedCheckbox.type = 'checkbox'  // Finished checkbox for the created book
     finishedCheckbox.className = 'checkbox'
@@ -45,7 +45,7 @@ class Book {
 
     finishedCheckbox.addEventListener('click', () => {
       finishedCheckbox.checked ? this.finished = true : this.finished = false
-      let updatedText = document.createTextNode(this.info())
+      let updatedText = document.createTextNode(this.info)
       listItem.replaceChild(updatedText, listItem.firstChild)  // Update only the text from the listItem
     })
 
