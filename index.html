@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Reading list</h1>
-    <p>Add books you want to read and control their status!</p>
+    <p>Add books you want to read and control their status.</p>
     <div>
         <div>
             <h2>Books</h2>
@@ -23,10 +23,10 @@
             <form> 
                 <h2>Add a new book to library</h2>
                 <label for="title">Title</label>
-                <input id="title" type="text" autofocus>
+                <input id="title" type="text" required autofocus>
                 
                 <label for="author">Author</label>
-                <input id="author" type="text">
+                <input id="author" type="text" required>
                 
                 <label for="page">Pages</label>
                 <input id="page" type="number">
@@ -36,7 +36,8 @@
                     <input class="checkbox" id="finished" type="checkbox">
                 </div>
 
-                <button formmethod="dialog">Add book</button>
+                <button type="submit" formmethod="dialog">Add book</button>
+                <span class="error"></span>
             </form>
         </dialog>
     </div>

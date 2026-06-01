@@ -3,11 +3,8 @@ const showDialogButton = document.querySelector('#new-book')
 const newBookDialog = document.querySelector('dialog')
 const dialogCloseButton = document.querySelector('dialog button')
 const dialogForm = document.querySelector('form')
-const dialogSubmitButton = document.querySelector('form button')
-const bookTitle = document.querySelector('#title')
-const bookAuthor = document.querySelector('#author')
-const bookPage = document.querySelector('#page')
-const bookFinished = document.querySelector('#finished')
+const bookPage = document.getElementById('page')
+const bookFinished = document.getElementById('finished')
 
 class Book {
   static library = []
@@ -65,13 +62,19 @@ dialogCloseButton.addEventListener('click', () => {
   newBookDialog.close()
 })
 
-dialogSubmitButton.addEventListener('click', () => {
-  if (!Book.library.some(book => book.title === bookTitle.value && book.author === bookAuthor.value)) {
-    let newBook = new Book(bookTitle.value, bookAuthor.value, bookPage.value, bookFinished.checked)
-    newBook.displayBook()
-  } else {
-    alert('Book already in library!')
-  }
+// VALIDATION
+dialogForm.addEventListener('submit', (event) => {
+  const bookTitle = document.getElementById('title')
+  const bookAuthor = document.getElementById('author')
+  const error = document.querySelector('.error')
+  error.textContent = ''
 
-  dialogForm.reset()  // The <dialog> element doesn't reset the form automatically when submitted
+  if (!Book.library.some(book => book.title === bookTitle.value && book.author === bookAuthor.value)) {
+    const newBook = new Book(bookTitle.value, bookAuthor.value, bookPage.value, bookFinished.checked)
+    newBook.displayBook()
+    dialogForm.reset()  // The <dialog> element doesn't reset the form automatically when submitted
+  } else {
+    event.preventDefault()
+    error.textContent = 'Book already in library.'
+  }
 })
